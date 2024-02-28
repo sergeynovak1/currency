@@ -6,7 +6,7 @@ from app.models import Currency
 
 
 class Command(BaseCommand):
-    help = 'Update or create currency'
+    help = 'Creating and changing a currency object using the parsing'
 
     def handle(self, *args, **kwargs):
         response = requests.get("http://www.cbr.ru/scripts/XML_daily.asp")
@@ -21,3 +21,5 @@ class Command(BaseCommand):
                 currency.save(update_fields=['rate'])
             else:
                 Currency.objects.create(name=name, rate=rate)
+
+        self.stdout.write(self.style.SUCCESS(f'Сurrencies were successfully updated using the link'))
