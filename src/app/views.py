@@ -7,8 +7,10 @@ from .serializers import CurrencySerializer
 class CurrencyListAPIView(generics.ListAPIView):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class CurrencyDetailAPIView(generics.RetrieveAPIView):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
+    permission_classes = [permissions.IsAuthenticated]
